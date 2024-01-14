@@ -8,12 +8,18 @@ const high = document.getElementsByClassName('title-high');
 const tech = document.getElementsByClassName('title-tech');
 const mess = document.getElementsByClassName('title-mess');
 
-function moveTitle(scrollPosition) {
+const whereWhen = document.getElementById('wherewhen-left');
+const whereWhenInitialPosition = whereWhen.offsetTop;
+
+const maxDistanceToMoveWhereWhen = 250;
+const minLogoSize = 200;
+
+function onScroll(scrollPosition) {
     const percentScrolled = Math.min(scrollPosition / screenHeight, 1);
     mainContent.style.left = 50 - (50 * percentScrolled) + '%';
     mainContent.style.height = `${Math.max(title.clientHeight, screenHeight - (screenHeight * percentScrolled))}px`;
     mainContent.style.width = `${Math.max(title.clientWidth, (screenWidth - (screenWidth * percentScrolled)) / 2)}px`;
-    mainContent.style.top = `${Math.min(scrollPosition, screenHeight)}px`
+    mainContent.style.top = `${Math.min(scrollPosition, screenHeight + maxDistanceToMoveWhereWhen)}px`
     mainContent.style.fontSize = `${Math.max(48, 160 - (percentScrolled * 140))}px`
     
     const horizontalShift = Math.sin(percentScrolled * 2 * Math.PI) * 50
@@ -30,6 +36,10 @@ function moveTitle(scrollPosition) {
     mess[0].style.marginTop = `${-verticalShift}%`
     mess[1].style.marginTop = `${-verticalShift}%`
 
+    if (scrollPosition > whereWhenInitialPosition - minLogoSize) {
+        whereWhen.style.top = `${Math.max(Math.min(scrollPosition - whereWhenInitialPosition + minLogoSize, maxDistanceToMoveWhereWhen + minLogoSize), 0)}px`
+    }
+
     if (scrollPosition > screenHeight) {
         document.getElementById('tickets').style.boxShadow = `4px 4px 0px 0px ${color}`
     } else {
@@ -42,7 +52,7 @@ document.addEventListener("scroll", () => {
 
     if (!ticking) {
         window.requestAnimationFrame(() => {
-            moveTitle(lastKnownScrollPosition);
+            onScroll(lastKnownScrollPosition);
             ticking = false;
         });
 

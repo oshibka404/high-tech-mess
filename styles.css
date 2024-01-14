@@ -13,23 +13,31 @@ html, body {
     font-size: 48px;
 }
 
+a {
+    display: inline-block;
+}
+
 a:link, a:visited {
     color: inherit;
     text-decoration: underline;
 }
 
+a:hover {
+    transform: translate(3px, 3px);
+}
+
 #main-page {
+    width: 100vw;
+    min-height: 100vh;
     background-color: transparent;
 }
 
 .page {
-    width: 100vw;
-    min-height: 100vh;
     background-color: #000;
 }
 
 .spacer {
-    height: 170px;
+    height: 200px;
     width: 100%;
     background-color: #000;
 }
@@ -41,6 +49,10 @@ a:link, a:visited {
     margin-right: 50%;
 }
 
+.page-content-full {
+    width: 100%;
+}
+
 .page-content-right {
     margin-right: 0;
     margin-left: 50%
@@ -48,6 +60,93 @@ a:link, a:visited {
 
 .invert {
     mix-blend-mode: exclusion;
+}
+
+.date, .place {
+    font-weight: 700;
+}
+
+.time {
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.highlight {
+    color: #0CFF41;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.dance {
+    animation: movement 3s infinite;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.heading {
+    font-family: Inter;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 116px;
+    text-transform: uppercase;
+}
+
+/* tags */
+
+.tags {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 24px;
+    padding: 12px 28px;
+    border: 2px solid #000;
+    color: black;
+    background-color: #fff;
+    text-transform: uppercase;
+}
+
+.tag.music {
+    background-color: #FF4CED;
+}
+
+.tag.light {
+    background-color: #0CFF41;
+}
+
+.tag.coding {
+    background-color: #FAFF0B;
+}
+
+.tag.generative {
+    background-color: #26F2FF;
+}
+
+.tag.dj {
+    background-color: #FF3232;
+}
+
+/* Line-up */
+
+.artist {
+    border: 2px solid #fff;
+    padding: 12px 20px;
+    margin: 20px 0;
+}
+
+.artist-name {
+    font-size: 48px;
+    font-weight: 900;
+    padding-bottom: 16px;
 }
 
 /* Tickets */
@@ -67,6 +166,7 @@ a:link, a:visited {
     text-transform: uppercase;
     line-height: 24px;
     box-shadow: 4px 4px 0px 0px #000;
+    z-index: 2;
 }
 
 #tickets:hover {
@@ -89,7 +189,7 @@ a:link, a:visited {
     font-size: 160px;
 }
 
-#title {
+#title, #title2 {
     font-weight: 900;
     color: #fff;
     margin: 0 auto;
@@ -130,16 +230,54 @@ a:link, a:visited {
 
 #title2 {
     position: absolute;
-    color: #fff;
-    font-weight: 700;
-    margin: 0 auto;
-    text-transform: uppercase;
-    animation: movement 3s infinite;
 }
 
 .high, .tech, .mess {
     position: relative;
     top: 0
+}
+
+/* Where/when */
+
+#wherewhen-left {
+    position: relative;
+}
+
+/* blink */
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    65% {
+        opacity: 0;
+    }
+    70% {
+        color: #fff;
+        opacity: 1;
+    }
+    75% {
+        color: #FF4CED;
+    }
+    80% {
+        color: #FAFF0B;
+    }
+    85% {
+        color: #26F2FF;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.blink-char {
+    animation: blink 5s infinite;
 }
 
 /* footer */
@@ -158,6 +296,8 @@ a:link, a:visited {
 
 .contact-head {
     font-weight: 700;
+    margin-bottom: 16px;
+    text-transform: uppercase;
 }
 
 footer {
@@ -167,8 +307,7 @@ footer {
 #footer-content {
     display: inline-block;
     background-color: #fff;
-    padding: 8px 16px;
-    width: calc(50% - 40px);
+    padding: 0;
     opacity: 0.7;
     margin: 24px 40px;
     color: #000;
