@@ -137,6 +137,10 @@ a:hover {
 
 /* Line-up */
 
+#page-line-up {
+    padding-bottom: 70px;
+}
+
 .artist {
     border: 2px solid #fff;
     padding: 12px 20px;
@@ -151,25 +155,28 @@ a:hover {
 
 /* Tickets */
 
-#tickets {
-    display: block;
-    font-weight: 900;
+#tickets-top {
     position: fixed;
     right: 40px;
     top: 24px;
+}
+
+.tickets {
+    display: inline-block;
+    font-weight: 900;
     padding: 12px 28px;
     font-size: 24px;
     background-color: #fff;
     border: 2px solid #000;
-    color: #000;
-    text-decoration: none;
+    color: #000!important;
+    text-decoration: none!important;
     text-transform: uppercase;
     line-height: 24px;
     box-shadow: 4px 4px 0px 0px #000;
     z-index: 2;
 }
 
-#tickets:hover {
+.tickets:hover {
     transform: translate(3px, 3px);
     box-shadow: 1px 1px 0px 0px #000;
 }
@@ -278,6 +285,32 @@ a:hover {
 
 .blink-char {
     animation: blink 5s infinite;
+}
+
+/* Prices */
+
+.price {
+    display: flex;
+    justify-content: stretch;
+    font-weight: 700;
+    gap: 32px;
+    margin-bottom: 12px;
+}
+
+.price-name {
+    text-wrap: nowrap;
+    flex-grow: 0;
+}
+
+.price-spacer {
+    border-bottom: 2px solid #fff;
+    flex-grow: 1;
+    position: relative;
+    top: -8px;
+}
+
+.price-value {
+    flex-grow: 0;
 }
 
 /* footer */

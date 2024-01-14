@@ -7,6 +7,7 @@ const title = document.getElementById('title');
 const high = document.getElementsByClassName('title-high');
 const tech = document.getElementsByClassName('title-tech');
 const mess = document.getElementsByClassName('title-mess');
+const tickets = document.getElementById('tickets-top')
 
 const whereWhen = document.getElementById('wherewhen-left');
 const whereWhenInitialPosition = whereWhen.offsetTop;
@@ -41,9 +42,9 @@ function onScroll(scrollPosition) {
     }
 
     if (scrollPosition > screenHeight) {
-        document.getElementById('tickets').style.boxShadow = `4px 4px 0px 0px ${color}`
+        tickets.style.boxShadow = `4px 4px 0px 0px ${color}`
     } else {
-        document.getElementById('tickets').style.boxShadow = '4px 4px 0px 0px #000'
+        tickets.style.boxShadow = '4px 4px 0px 0px #000'
     }
 }
   
