@@ -8,6 +8,7 @@ const high = document.getElementsByClassName('title-high');
 const tech = document.getElementsByClassName('title-tech');
 const mess = document.getElementsByClassName('title-mess');
 const tickets = document.getElementById('tickets-top')
+const tickets2 = document.getElementById('tickets-bottom')
 
 const whereWhen = document.getElementById('wherewhen-left');
 const whereWhenInitialPosition = whereWhen.offsetTop;
@@ -43,8 +44,10 @@ function onScroll(scrollPosition) {
 
     if (scrollPosition > screenHeight) {
         tickets.style.boxShadow = `4px 4px 0px 0px ${color}`
+        tickets2.style.boxShadow = `4px 4px 0px 0px ${color}`
     } else {
         tickets.style.boxShadow = '4px 4px 0px 0px #000'
+        tickets2.style.boxShadow = '4px 4px 0px 0px #000'
     }
 }
   

@@ -289,12 +289,18 @@ a:hover {
 
 /* Prices */
 
+.prices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
 .price {
     display: flex;
     justify-content: stretch;
     font-weight: 700;
     gap: 32px;
-    margin-bottom: 12px;
 }
 
 .price-name {
