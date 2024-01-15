@@ -10,7 +10,6 @@ const high = document.getElementsByClassName('title-high');
 const tech = document.getElementsByClassName('title-tech');
 const mess = document.getElementsByClassName('title-mess');
 const tickets = document.getElementById('tickets-top')
-const ticketsInitialTop = tickets.offsetTop
 const tickets2 = document.getElementById('tickets-bottom')
 const prices = document.getElementById('prices')
 
@@ -44,14 +43,6 @@ function onScroll(scrollPosition) {
 
     if (scrollPosition > whereWhenInitialPosition - minLogoSize) {
         whereWhen.style.top = `${Math.max(Math.min(scrollPosition - whereWhenInitialPosition + minLogoSize, maxDistanceToMoveWhereWhen + minLogoSize), 0)}px`
-    }
-
-    if (scrollPosition + ticketsInitialTop > prices.offsetTop) {
-        tickets.style.position = 'absolute'
-        tickets.style.top = `${prices.offsetTop}px`
-    } else {
-        tickets.style.position = 'fixed'
-        tickets.style.top = `${ticketsInitialTop}px`
     }
 
     if (scrollPosition > screenHeight) {
