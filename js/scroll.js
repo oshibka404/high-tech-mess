@@ -50,17 +50,18 @@ function onScroll(scrollPosition) {
         tickets2.style.boxShadow = '4px 4px 0px 0px #000'
     }
 }
-  
+
+let scrollTicking = false;
 document.addEventListener("scroll", () => {
     lastKnownScrollPosition = window.scrollY;
 
-    if (!ticking) {
+    if (!scrollTicking) {
         window.requestAnimationFrame(() => {
             onScroll(lastKnownScrollPosition);
-            ticking = false;
+            scrollTicking = false;
         });
 
-        ticking = true;
+        scrollTicking = true;
     }
 });
   

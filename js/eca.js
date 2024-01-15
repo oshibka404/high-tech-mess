@@ -25,7 +25,7 @@ function randomColor() {
     return '#' + Math.random().toString(16).slice(2, 8);
 }
 
-let ticking = false;
+let ecaTicking = false;
 
 let color = randomColor();
 let bgColor = randomColor();
@@ -44,16 +44,16 @@ function drawFrame() {
         drawGeneration(state, i, ctx);
         state = updateState(state, RULE);
     }
-    ticking = false;
+    ecaTicking = false;
 }
 
 drawFrame()
 
 const drawNextGeneration = () => {
-    if (timeout || ticking) return;
+    if (timeout || ecaTicking) return;
     timeout = setTimeout(() => {
         requestAnimationFrame(drawFrame)
-        ticking = true;
+        ecaTicking = true;
         clearTimeout(timeout);
         timeout = null;
     }, 10)
