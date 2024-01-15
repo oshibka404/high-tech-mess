@@ -55,7 +55,15 @@ a:hover {
 
 .page-content-right {
     margin-right: 0;
-    margin-left: 50%
+    margin-left: 50%;
+}
+
+@media only screen and (max-width: 1000px) {
+    .page-content, .page-content-right {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
 }
 
 .invert {
@@ -161,6 +169,16 @@ a:hover {
     top: 24px;
 }
 
+@media only screen and (max-width: 600px) {
+    #tickets-top {
+        right: auto;
+        top: auto;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
 .tickets {
     display: inline-block;
     font-weight: 900;
@@ -237,6 +255,13 @@ a:hover {
 
 #title2 {
     position: absolute;
+}
+
+@media only screen and (max-width: 1000px) {
+    #main-content {
+        width: 100%;
+        left: 0;
+    }
 }
 
 .high, .tech, .mess {
@@ -360,4 +385,4 @@ footer {
     left: 0;
     z-index: -1;
     width: 100vw;
-}
+} 

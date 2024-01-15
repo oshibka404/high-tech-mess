@@ -3,12 +3,16 @@ let lastKnownScrollPosition = 0;
 let screenWidth = window.innerWidth;
 let screenHeight = window.innerHeight;
 const mainContent = document.getElementById('main-content');
+const initialMainContentLeft = mainContent.offsetLeft;
+const initialMainContentWidth = mainContent.clientWidth;
 const title = document.getElementById('title');
 const high = document.getElementsByClassName('title-high');
 const tech = document.getElementsByClassName('title-tech');
 const mess = document.getElementsByClassName('title-mess');
 const tickets = document.getElementById('tickets-top')
+const ticketsInitialTop = tickets.offsetTop
 const tickets2 = document.getElementById('tickets-bottom')
+const prices = document.getElementById('prices')
 
 const whereWhen = document.getElementById('wherewhen-left');
 const whereWhenInitialPosition = whereWhen.offsetTop;
@@ -18,9 +22,9 @@ const minLogoSize = 200;
 
 function onScroll(scrollPosition) {
     const percentScrolled = Math.min(scrollPosition / screenHeight, 1);
-    mainContent.style.left = 50 - (50 * percentScrolled) + '%';
+    mainContent.style.left = initialMainContentLeft - (initialMainContentLeft * percentScrolled) + 'px';
     mainContent.style.height = `${Math.max(title.clientHeight, screenHeight - (screenHeight * percentScrolled))}px`;
-    mainContent.style.width = `${Math.max(title.clientWidth, (screenWidth - (screenWidth * percentScrolled)) / 2)}px`;
+    mainContent.style.width = `${Math.max(title.clientWidth, initialMainContentWidth - initialMainContentWidth * percentScrolled)}px`;
     mainContent.style.top = `${Math.min(scrollPosition, screenHeight + maxDistanceToMoveWhereWhen)}px`
     mainContent.style.fontSize = `${Math.max(48, 160 - (percentScrolled * 140))}px`
     
@@ -40,6 +44,14 @@ function onScroll(scrollPosition) {
 
     if (scrollPosition > whereWhenInitialPosition - minLogoSize) {
         whereWhen.style.top = `${Math.max(Math.min(scrollPosition - whereWhenInitialPosition + minLogoSize, maxDistanceToMoveWhereWhen + minLogoSize), 0)}px`
+    }
+
+    if (scrollPosition + ticketsInitialTop > prices.offsetTop) {
+        tickets.style.position = 'absolute'
+        tickets.style.top = `${prices.offsetTop}px`
+    } else {
+        tickets.style.position = 'fixed'
+        tickets.style.top = `${ticketsInitialTop}px`
     }
 
     if (scrollPosition > screenHeight) {
