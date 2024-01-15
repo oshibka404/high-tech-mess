@@ -75,8 +75,13 @@ a:hover {
 }
 
 .time {
-    font-size: 36px;
+    font-size: 24px;
     font-weight: 400;
+    text-transform: lowercase;
+}
+
+.faded {
+    color: #9F9F9F;
 }
 
 .highlight {
