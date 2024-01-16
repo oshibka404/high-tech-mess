@@ -30,6 +30,7 @@ a:hover {
     width: 100vw;
     min-height: 100vh;
     background-color: transparent;
+    cursor: url('./images/bucket.svg'), auto;
 }
 
 .page {
@@ -370,6 +371,7 @@ a:hover {
 }
 
 footer {
+    cursor: url('./images/bucket.svg'), auto;
     background-color: transparent;
 }
 
