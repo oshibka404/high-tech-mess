@@ -1,65 +1,23 @@
 const canvas = document.getElementById('eca')
 const ctx = canvas.getContext('2d');
 
-const width = canvas.width = window.innerWidth;
-const height = canvas.height = window.innerHeight;
-
-const PIXEL_SIZE = 4;
-
 const RULES = [
     182, 99, 30, 154, 90, 195, 161
 ]
 
 let RULE = 99;
 
-let initialState = (new Array(Math.ceil(width / PIXEL_SIZE))).fill(0);
-initialState[Math.floor(initialState.length / 2)] = 1;
+const colorPairs = [
+    ['#F9EF25', '#FB613F'], // orange
+    ['#DC7DF7', '#FA2521'], // pink
+    ['#410CDA', '#3677AD'], // blue
+    ['#F9EF25', '#8CF23C'], // green
+];
 
-ctx.moveTo(0, 0);
-
-let generation = 0
-
-let timeout = null;
-
-function randomColor() {
-    return '#' + Math.random().toString(16).slice(2, 8);
-}
-
-let ecaTicking = false;
-
-let color = randomColor();
-let bgColor = randomColor();
-
-document.body.addEventListener('click', () => {
-    color = randomColor();
-    bgColor = randomColor();
-    RULE = RULES[Math.floor(Math.random() * RULES.length)];
-    drawFrame();
-})
-
-function drawFrame() {
-    initialState = updateState(initialState, RULE);
-    let state = initialState;
-    for (let i = 0; i < height / PIXEL_SIZE; i++) {
-        drawGeneration(state, i, ctx);
-        state = updateState(state, RULE);
-    }
-    ecaTicking = false;
-}
-
-drawFrame()
-
-const drawNextGeneration = () => {
-    if (timeout || ecaTicking) return;
-    timeout = setTimeout(() => {
-        requestAnimationFrame(drawFrame)
-        ecaTicking = true;
-        clearTimeout(timeout);
-        timeout = null;
-    }, 10)
-}
-
-document.body.addEventListener('mousemove', drawNextGeneration)
+const colorPair = colorPairs[Math.floor(Math.random() * colorPairs.length)];
+let color = colorPair[0];
+let bgColor = colorPair[1];
+const PIXEL_SIZE = 4;
 
 function drawGeneration(state, i, ctx) {
     for (let j = 0; j < state.length; j++) {
@@ -86,4 +44,47 @@ function updateState(state, ruleNumber) {
     return newState;
 }
 
+const width = canvas.width = window.innerWidth;
+const height = canvas.height = window.innerHeight;
+
+let initialState = (new Array(Math.ceil(width / PIXEL_SIZE))).fill(0);
+initialState[Math.floor(initialState.length / 2)] = 1;
+let ecaTicking = false;
+
+function drawFrame() {
+    initialState = updateState(initialState, RULE);
+    let state = initialState;
+    for (let i = 0; i < height / PIXEL_SIZE; i++) {
+        drawGeneration(state, i, ctx);
+        state = updateState(state, RULE);
+    }
+    ecaTicking = false;
+}
+
+let timeout = null;
+
+const drawNextFrame = () => {
+    if (timeout || ecaTicking) return;
+    timeout = setTimeout(() => {
+        requestAnimationFrame(drawFrame)
+        ecaTicking = true;
+        clearTimeout(timeout);
+        timeout = null;
+    }, 10)
+}
+
+document.body.addEventListener('mousemove', drawNextFrame)
+
+function randomColor() {
+    return '#' + Math.random().toString(16).slice(2, 8);
+}
+
+document.body.addEventListener('click', () => {
+    color = randomColor();
+    bgColor = randomColor();
+    RULE = RULES[Math.floor(Math.random() * RULES.length)];
+    drawFrame();
+})
+
+drawFrame()
 
