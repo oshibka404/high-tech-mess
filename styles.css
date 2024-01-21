@@ -27,8 +27,9 @@ a:hover {
 }
 
 #main-page {
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
+    box-sizing: border-box;
     background-color: transparent;
     cursor: url('./images/bucket.svg'), auto;
 }
@@ -208,6 +209,7 @@ a:hover {
 /* Main */
 
 #main-content {
+    box-sizing: border-box;
     width: 50%;
     position: absolute;
     padding: 24px 40px;
