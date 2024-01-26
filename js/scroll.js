@@ -46,11 +46,11 @@ function onScroll(scrollPosition) {
     }
 
     if (scrollPosition > screenHeight) {
-        tickets.style.boxShadow = `4px 4px 0px 0px ${color}`
-        tickets2.style.boxShadow = `4px 4px 0px 0px ${color}`
+        tickets.style.setProperty('--box-shadow-color', color)
+        tickets2.style.setProperty('--box-shadow-color', color)
     } else {
-        tickets.style.boxShadow = '4px 4px 0px 0px #000'
-        tickets2.style.boxShadow = '4px 4px 0px 0px #000'
+        tickets.style.setProperty('--box-shadow-color', '#000')
+        tickets2.style.setProperty('--box-shadow-color', '#000')
     }
 }
 
